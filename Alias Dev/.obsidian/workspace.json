@@ -1,20 +1,24 @@
 {
   "main": {
-    "id": "b0151c66864d84e9",
+    "id": "2dc0396ebb3dfcc2",
     "type": "split",
     "children": [
       {
-        "id": "9104589dd2b5ed42",
+        "id": "223650a6297f5037",
         "type": "tabs",
         "children": [
           {
-            "id": "657a414fd1fa3a73",
+            "id": "57510c669f4b02dc",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "WSL Video.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "WSL Video"
             }
           }
         ]
@@ -23,15 +27,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "7f037be94abdc2ef",
+    "id": "5f9c5cb834961546",
     "type": "split",
     "children": [
       {
-        "id": "8184cb01000e86d0",
+        "id": "153afe2d78e4f304",
         "type": "tabs",
         "children": [
           {
-            "id": "3ae384063c37099d",
+            "id": "550ad567a8664f42",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -44,7 +48,7 @@
             }
           },
           {
-            "id": "3391876813fb0052",
+            "id": "305d36803318c07c",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -61,7 +65,7 @@
             }
           },
           {
-            "id": "543567c026c965d5",
+            "id": "c26879d44bcbbafd",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -77,19 +81,20 @@
     "width": 300
   },
   "right": {
-    "id": "9578262468ea49ed",
+    "id": "6b72fe1639851ac4",
     "type": "split",
     "children": [
       {
-        "id": "29334152f8096681",
+        "id": "c6798782a1424df9",
         "type": "tabs",
         "children": [
           {
-            "id": "c218f4107ac75f88",
+            "id": "5909bb78edc0ef13",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Python.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,24 +104,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for Python"
             }
           },
           {
-            "id": "178655ccd7603087",
+            "id": "c67671cd5e5a31d1",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Python.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "Outgoing links from Python"
             }
           },
           {
-            "id": "47f2ae3da7b270a6",
+            "id": "96656731def83462",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -131,17 +137,18 @@
             }
           },
           {
-            "id": "52fd030754defc51",
+            "id": "8483a717a3566d8e",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
+                "file": "Python.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Outline of Python"
             }
           }
         ]
@@ -158,11 +165,17 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "3ae384063c37099d",
+  "active": "57510c669f4b02dc",
   "lastOpenFiles": [
+    "Python.md",
+    "Untitled.canvas",
+    "Drawing 2025-05-16 14.05.16.excalidraw.md",
+    "Excalidraw/Drawing 2025-04-11 15.36.19.excalidraw.md",
+    "Excalidraw",
     "Welcome.md"
   ]
 }

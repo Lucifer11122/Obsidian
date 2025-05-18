@@ -21,6 +21,7 @@ Sudo vim /etc/apt/source.list
 deb http://http.kali.org/kali kali-rolling main contrib non-free non-free-firmware
 
 # Script
-
-Before we hop into our terminals and install our first linux distribution we have to make sure that we have the windows subsystem for linux feature enabled in our system
+***WSL Setup***
+Before we hop into our terminals and install our first Linux distribution we have to make sure that we have the windows subsystem for Linux feature enabled in our system 
+Now to do that open your windows search and look for "Turn windows feature on or off" open it and then scroll down at the very bottom. Here you can see a feature called windows subsystem for Linux we want to enable this feature so click the check box beside wsl and click ok. Now you will be prompted to restart your pc. After you have restarted we can get to downloading linux on windows, so open your terminal i am using powershell but you ca use any terminal like cmd or something else. Now that we have opened our terminal we first need to know what distros we can download in order to check all the distros that can be downloaded through wsl we will use the command wsl --list --online. As you can see all the distros that we can install are listed. In order to install any distro we will use the command wsl --install <distro-name> for this video we will install 2 distros ubuntu and kali-linux and i will also show you how to setup both distros and install gui desktop enviroments for both of these distros but first we need to install out first distro ubuntu so lets do it. As you can see ubuntu has started to download 
  
