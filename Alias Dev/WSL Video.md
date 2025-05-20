@@ -37,3 +37,236 @@ Now as i said in the beginning of the video i will also show you how to create a
 7. Localhost 3389
 8. in case localhost 3389 is not running in your remote desktop window us this command hostname -I to get the ip assigned to the distro and put that in the remote desktop window
 9. then when prompted enter the username and password for your ubutu and we have a desktop environment for our ubuntu running
+
+
+***into***
+
+
+Welcome to my channel, AliasDev! If you’ve ever wanted to try using Linux but didn’t want to give up Windows, you have a few options: setting up a virtual machine or dual-booting. However, both can be difficult and time-consuming.
+
+What if I told you that you can run a real Linux kernel from inside Windows using the terminal? Installing it takes only 5 minutes with **one command**. You can seamlessly access Linux files from Windows and vice versa, and it boots in 1-2 seconds. Plus, you can do almost everything you’d want to do in Linux while still being in the comfort of Windows.
+
+That’s the topic of today’s video: **Windows Subsystem for Linux (WSL)**. I’ll show you how to set up the popular Linux distro **Ubuntu** using WSL, configure it for basic development needs, and even get a full desktop environment running.
+
+---
+
+### **WSL Setup**
+
+Before we dive into installing a Linux distribution, we first need to ensure the **Windows Subsystem for Linux** feature is enabled on your system.
+
+1. Open **Windows Search** and look for **"Turn Windows feature on or off"**.
+    
+2. Open it and scroll down to the bottom.
+    
+3. Find the option called **"Windows Subsystem for Linux"**. Check the box beside it and click **OK**.
+    
+4. You will be prompted to restart your PC.
+    
+
+After restarting, open your **Windows Terminal** (I’m using PowerShell, but you can also use Command Prompt).
+
+Now that we’ve got the terminal open, let's check what distributions are available for WSL:
+
+bash
+
+CopyEdit
+
+`wsl --list --online`
+
+This command will show all the distros available for installation. To install any of these distros, use the following command:
+
+bash
+
+CopyEdit
+
+`wsl --install <distro-name>`
+
+For this tutorial, we’ll install **Ubuntu**. So, let’s go ahead and do that.
+
+bash
+
+CopyEdit
+
+`wsl --install ubuntu`
+
+Ubuntu will start downloading. This might take some time, so let’s come back when it’s done.
+
+---
+
+Once Ubuntu is downloaded and installed, you can launch it using the command:
+
+bash
+
+CopyEdit
+
+`wsl -d ubuntu`
+
+You’ll be prompted to enter a **Unix username**. This is separate from your Windows user account, but by default, it’ll suggest your Windows username. You can choose whatever username you like. After setting the username, you’ll need to set a password for **sudo** (administrator/root tasks).
+
+After completing the setup, restart your terminal to refresh it.
+
+---
+
+### **System Update**
+
+After restarting your terminal, you should see **Ubuntu** listed alongside PowerShell, Command Prompt, and Git Bash. Open Ubuntu from here, and the first thing we’ll do is update the system:
+
+bash
+
+CopyEdit
+
+`sudo apt update -y && sudo apt upgrade -y`
+
+Enter your password, and the system will update all packages. This will take some time depending on your internet speed.
+
+---
+
+### **Installing Tools**
+
+Now that the system is updated, let’s install **Neofetch**, a system information tool that gives us a quick overview of the system we’re running.
+
+bash
+
+CopyEdit
+
+`sudo apt install neofetch -y neofetch`
+
+Running **neofetch** will show details about your Ubuntu system in the terminal.
+
+---
+
+### **Running GUI Applications**
+
+With **WSL 2** and a feature called **WSLg**, you can now run **GUI applications** inside your terminal—just like you would on a native Linux desktop!
+
+For example, let’s install **Firefox**:
+
+bash
+
+CopyEdit
+
+`sudo apt install firefox -y`
+
+Once it’s done, open it:
+
+bash
+
+CopyEdit
+
+`firefox`
+
+---
+
+### **Configuring VS Code**
+
+Next, let’s configure **Visual Studio Code** to run from within Ubuntu while accessing your Windows files.
+
+1. First, open **VS Code** in Windows.
+    
+2. Go to the **Extensions** tab and search for **Remote Development**. Install this extension pack, which will allow VS Code to work inside Ubuntu.
+    
+
+Now, back in your Ubuntu terminal, you can launch VS Code with:
+
+bash
+
+CopyEdit
+
+`code .`
+
+This will open **VS Code** in Ubuntu, but it’s still the Windows version of VS Code. However, it will use **Linux file paths**, **Linux tools**, and **Linux compilers**.
+
+---
+
+### **Installing Compilers**
+
+If you want to work with **C** and **C++** in your Ubuntu environment, you’ll need to install the compilers:
+
+bash
+
+CopyEdit
+
+`sudo apt install build-essential -y`
+
+This installs **GCC**, **G++**, **Make**, and other essential tools. To check if the installation was successful:
+
+bash
+
+CopyEdit
+
+`gcc --version g++ --version`
+
+For Python, **Python 3** comes preinstalled with Ubuntu in WSL, but **pip** (Python’s package manager) is not. To install **pip**:
+
+bash
+
+CopyEdit
+
+`sudo apt install python3-pip -y`
+
+Verify the installation with:
+
+bash
+
+CopyEdit
+
+`pip3 --version`
+
+You can now install Python packages and run Python code in your Ubuntu environment!
+
+---
+
+### **Creating a Desktop Environment**
+
+As promised, let’s set up a **full desktop environment** for Ubuntu inside Windows. Here’s how:
+
+1. Install the required packages:
+    
+
+bash
+
+CopyEdit
+
+`sudo apt install xfce4 xfce4-goodies -y sudo apt install xrdp -y`
+
+2. Enable **xrdp**:
+    
+
+bash
+
+CopyEdit
+
+`sudo systemctl enable xrdp`
+
+3. Add yourself to the **ssl-cert** group:
+    
+
+bash
+
+CopyEdit
+
+`sudo adduser $(whoami) ssl-cert`
+
+4. Set up **Xfce** to start when you connect remotely:
+    
+
+bash
+
+CopyEdit
+
+`echo "startxfce4" > ~/.xsession`
+
+5. Open **Remote Desktop Connection** (search for **mstsc** in Windows).
+    
+6. In the **Remote Desktop** window, enter `localhost:3389` and connect. If it doesn’t work, use the IP address assigned to the Ubuntu distro (run `hostname -I` in the Ubuntu terminal to find it).
+    
+
+You’ll be prompted to log in with the username and password you set for Ubuntu.
+
+And that’s it! You now have a **full desktop environment** for your Ubuntu installation running inside Windows.
+
+---
+
+### **Conclusion**
+
+And there you have it! With WSL and a bit of setup, you can enjoy all the power of Linux while staying within the Windows environment. Whether you need a command-line tool or a full desktop environment, WSL has you covered.
