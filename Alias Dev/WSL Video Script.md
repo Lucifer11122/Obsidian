@@ -6,12 +6,7 @@ sudo apt install neofetch -y
 neofetch # to install and run neofetch
 sudo apt install firefox -y
 firefox # to install and fun firefox
-# Ubuntu Desktop Environment :
-sudo apt install xfce4 xfce4-goodies -y
-sudo apt install xrdp -y
-sudo systemctl enable xrdp
-sudo adduser $(whoami) ssl-cert
-echo "startxfce4" > ~/.xsession
+
 hostname -I
 sudo apt install build-essential -y # to install gcc and g++ compilers
 python3 --version
@@ -58,19 +53,20 @@ public class HelloWorld {
 
 ***Intro***
 Hello Everyone, Welcome to Alias Dev
-If you are thinking that you want to use Linux and windows on the same computer like me and you google it the top answers are always the same, they either recommend dual-booting or using traditional virtual machines like vmware or virtual-box, but lets be real, both are kind of a hassle they are time consuming takes too much effort and not beginner friendly. But what if i tell you you also have a third option. That's what we are going to discuss in today's video about Windows Subsystem for Linux. 
-Now Windows Subsystem for Linux or WSL is a feature of Windows that allows us to run a real Linux kernel inside windows using the windows kernel and a light weight vm called hyper-v and the best part is it is very resource friendly, takes one command to setup and less than 5 minutes to setup totally and no need to reboot to a different operating system as it is running in the windows terminal.
-We can access Linux and windows files interchangeably, boot into Linux within seconds, run all sorts of GUI applications and code with the windows native vs code all within the comfort of the windows desktop.
+If you are thinking that you want to use Linux and windows on the same computer like me and you google it the top answers are always the same, they either recommend dual-booting or using traditional virtual machines like vmware or virtual-box, but lets be real, both are kind of a hassle they are time consuming, resource heavy, takes too much effort and can easily scare off beginners. But what if i tell you you also have a third option. That's what we are going to discuss in today's video about Windows Subsystem for Linux. 
+Now Windows Subsystem for Linux or WSL is a feature of Windows that allows us to run a real Linux kernel inside windows using the windows kernel and a  light weight vm called hyper-v and the best part is it is very resource friendly, takes one command to setup and less than 5 minutes to setup totally and there is no need to reboot to a different operating system as it is running in the windows terminal. We can access Linux and windows files interchangeably, boot into Linux within seconds, run all sorts of GUI applications and code with the windows native vs code all within the comfort of the windows desktop.
 In this video i will walk you through how to install ubuntu a very popular Linux distro on WSL, set it up for development purposes, and then show you how you can run a full ubuntu desktop environment on windows.
 So lets jump in.
 ***WSL Setup***
-Before we can go to out terminal and install ubuntu we will first have to make sure that WSL is enabled in windows
+Before we can go to out terminal and install ubuntu we will first have to make sure about two things 
+1. You are running windows 10 version 2004 (Build 19041) or newer or windows 11. This is because the version of WSL we will use WSL2, it is not supported on earlier versions. You can check this quickly by hitting win+r typing winver and hitting enter. Here as you can see my windows version is 24h2 which is the latest verison of win 11 but if you are in an older version make sure to update your system.
+2. WSL is enabled in windows
 To enable WSL in windows 
-1. Open the windows search bar
-2. Look for "Turn windows Features on or off" and open it
-3. Scroll down to the very bottom of this page 
-4. Here check the checkbox beside windows subsystem for Linux and click ok
-5. after clicking ok you will be prompted to restart your system 
+3. Open the windows search bar
+4. Look for "Turn windows Features on or off" and open it
+5. Scroll down to the very bottom of this page 
+6. Here check the checkbox beside windows subsystem for Linux and click ok
+7. after clicking ok you will be prompted to restart your system 
 After you have restarted your system open your terminal, i am using Power-shell but using command prompt is totally fine. Once you are inside the terminal you at first will probably want to know which Linux distributions you can install on WSL, in order to see the list of available distros you can use the command 
 ```bash
 wsl --list --online
@@ -117,4 +113,36 @@ gcc hello.c -o hello_c
 ./hello_c
 ```
 similarly we you try running a simple c++ and python code to check if everything is working fine
-If you want to you can also install jdk with the command.
+If you want to use java you can also install jdk with the command.
+***Setting Up the Desktop Environment***
+Alright till now we have installed ubuntu inside our windows terminal, installed a few gui applications and did a basic development setup. Now i will show you how you get a full desktop environment of ubuntu running inside of your windows system. To do that we will use a couple of tools one is xfce and the other one is xrdp.
+so lets install them 
+```bash
+sudo apt install xfce4 xfce4-goodies -y
+sudo apt install xrdp -y
+```
+now we will tell the Linux system to auto start xrdp on boot everytime. If we dont do this then after everytime we restart WSL we will have to manually start xrdp to start the desktop environment
+```bash
+sudo systemctl enable xrdp
+```
+Now we will add our Linux user to the `ssl-cert` group, which gives us permission to access the self-signed SSL certificates used by `xrdp`.
+
+Without this,we might face:
+Blank screens when connecting via Remote Desktop
+Permission errors
+xrdp failing to start a secure session
+```bash
+sudo adduser $(whoami) ssl-cert
+```
+we are nearly done with setting up the desktop environment in our last step we need xrdp to start xfce4 as the desktop environment whenever we connect with the remote desktop for that we will
+```bash
+echo "startxfce4" > ~/.xsession
+```
+create a .xsession file which is like a startup script for our desktop session and have the command startxfce4 in it
+and once we are done with all of this we can open mstsc via win+r or open our windows search and search for remote desktop. In here we will give localhost 3389 as the computer. This is because the 3389 port is the one that xrdp listens to by default.
+Now if for you this is not working there is a work around go to your terminal again and type the command 
+```bash
+hostname -I
+```
+this will give you the ip address assigned to the ubuntu distro and we can also use this to connect to remote desktop
+Next you will be prompted to enter your username and password and boom you are inside a ubuntu desktop inside of your windows systems 
